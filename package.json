@@ -2,7 +2,7 @@
     "name": "zig",
     "displayName": "Zig",
     "description": "Language support for the Zig programming language",
-    "version": "0.2.2",
+    "version": "0.2.4",
     "publisher": "tiehuis",
     "icon": "images/zig-icon.png",
     "license": "MIT",
@@ -41,6 +41,11 @@
             "type": "object",
             "title": "zig",
             "properties": {
+                "zig.buildOnSave": {
+                    "type": "boolean",
+                    "default": "false",
+                    "description": "Compiles code on file save using the settings specified in 'Build Option'."
+                },
                 "zig.buildOption": {
                     "type": "string",
                     "default": "build",
@@ -74,9 +79,21 @@
                     "type": "boolean",
                     "default": true,
                     "description": "Should output channel be raised on formatting error."
+                },
+                "zig.zigLspPath": {
+                    "type": "string",
+                    "default": null,
+                    "description": "Path to directory with zig-lsp."
                 }
             }
-        }
+        },
+        "commands": [
+            {
+                "command": "zig.build.workspace",
+                "title": "Zig: Build Workspace",
+                "description": "Build the current project using 'zig build'"
+            }
+        ]
     },
     "scripts": {
         "vscode:prepublish": "npm run compile",
@@ -86,12 +103,12 @@
         "test": "npm run compile && node ./node_modules/vscode/bin/test"
     },
     "dependencies": {
-        "vscode-languageclient": "^5.2.1"
+        "vscode-languageclient": "^6.1.3"
     },
     "devDependencies": {
         "@types/mocha": "^2.2.48",
-        "@types/node": "^7.0.67",
-        "@types/vscode": "^1.1.33",
-        "typescript": "^2.9.2"
+        "@types/node": "^7.10.9",
+        "typescript": "^2.9.2",
+        "vscode": "^1.1.36"
     }
 }
